@@ -1,0 +1,54 @@
+<div class="container" style="margin-top:50px;margin-bottom: 40px;">
+    <%- include("includes/alert", {
+        req: req
+    })%>
+    <div class="row">
+        <div class="col-md-12">
+            <% if(typeof file !== "undefined"){ %>
+            <div class="jumbotron">
+                <p style="font-size: 100px;">
+                    <% if(file.type == "folder"){ %> 
+                    <i class="bi-folder2-open"></i>
+                    <% } else{%>
+                    <i class="bi-file-text-fill"></i>
+                    <% } %>
+                </p>
+                <h3><%= file.type == "folder" ? file.folderName : file.name%></h3>
+                <p>
+                    <% 
+                    var createdAt = file.createdAt
+                    createdAt = parseFloat(createdAt)
+                    createdAt = new Date(createdAt)
+                    createdAt = createdAt.getDate() + " " + months[createdAt.getMonth()] + ", " + createdAt.getFullYear()
+                    + " " + createdAt.getHours() + ":" + createdAt.getMinutes() + ":" + createdAt.getSeconds();
+                    %>
+                    Created at:  <%= createdAt %>
+                </p>
+                <p>
+                    Size: 
+                    <%= file.type == "folder" ? formatBytes(getFolderSize(file.files)): formatBytes(file.size) %>
+                </p>
+
+                <%
+                var folderPath = ""
+                if(file.type == "folder"){
+                    if(file.isShared){
+                        folderPath = '/sharedWithMe/'+ file._id
+                    }else{
+                        folderPath = '/MyUploads/'+ file._id
+                    }
+                }else{
+                    if(file.isShared){
+                        folderPath = '/sharedWithMe/'
+                    }else{
+                        folderPath = '/MyUploads/'
+                    }
+                    folderPath += (file.parent == null) ? "" : file.parent._id
+                }
+                %>
+                <a href="<%= folderPath %>" class="btn btn-primary">View</a>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
