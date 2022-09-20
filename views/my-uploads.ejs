@@ -184,7 +184,7 @@
             </script>
             <button type="button" class="btn btn-warning" onclick="renameFile(this)" id="button-rename-file" data-dismiss="modal" data-id="" data-name="">Rename</button>
             <button type="button" class="btn btn-info" data-id="" data-type="" id="button-share-file" onclick="showShareModal(this)" data-dismiss="modal">Share</button>
-            <form action="/deleteSharedFile" method="post" id="form-delete-file">
+            <form action="/deleteFile" method="post" id="form-delete-file">
                 <input type="hidden" name="_id" required>
                 <button type="button" class="btn btn-danger" onclick="confirmDeleteFile(this)">Delete</button>
             </form>
