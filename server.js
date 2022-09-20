@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 const dotenv = require("dotenv")
 dotenv.config()
-const session = require("express-session")
+const session = require("cookie-session")
 const expressLayouts = require("express-ejs-layouts")
 const bodyParser = require("body-parser");
 // const formidable = require("formidable")
