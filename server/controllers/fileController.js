@@ -4,7 +4,7 @@ const PublicLinks = require('../models/publicLinks')
 const ObjectId = require('mongodb').ObjectId;
 const fileSystem = require("fs");
 const rimraf = require("rimraf");
-const redirectUrl = "https://the-fileshare-app.herokuapp.com/";
+const redirectUrl = "https://the-filesharer-app.herokuapp.com/";
 const bcrypt = require("bcrypt");
 /**
  * func/
