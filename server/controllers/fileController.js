@@ -557,7 +557,7 @@ exports.MyUploads = async(req, res) =>{
                 folderPath = "./public/uploads/"+ user.username + "/" +name;
                 uploadedObj.folderPath = folderPath;
                 if(!fileSystem.existsSync("./public/uploads/"+ user.username )){
-                    fileSystem.mkdirSync("./public/uploads/"+ user.username );
+                    fileSystem.mkdirSync("./public/uploads/"+ user.username, {recursive: true}, err => {} );
                 }
             }else{
                 var folderObj = await recursiveGetFolder(user.uploaded, _id);
@@ -637,7 +637,7 @@ exports.fileUpload = async(req, res) =>{
                         uploadedObj.filePath = filePath;
                         
                         if(!fileSystem.existsSync("./public/uploads/" + user.username)){
-                            fileSystem.mkdirSync("./public/uploads/"+ user.username );
+                            fileSystem.mkdirSync("./public/uploads/"+ user.username, {recursive: true}, err => {} );
                         }
                         await User.updateOne({
                             "_id": ObjectId(req.user._id)
