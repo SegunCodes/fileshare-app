@@ -51,6 +51,31 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-md-8">
+                                    <% 
+                                        months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
+                                        formatBytes = function(bytes, decimals =2){
+                                            if(bytes === 0) return '0B';
+                                            const k = 1024;
+                                            const dm = decimals < 0 ? 0 : decimals;
+                                            const sizes = ['B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+                                            const i = Math.floor(Math.log(bytes)/Math.log(k));
+                                            return parseFloat((bytes/Math.pow(k,i)).toFixed(dm)) + ' ' + sizes[i];
+                                        } 
+                                        getFolderSize = function(arr){
+                                            var sum = 0;
+                                            for (var a = 0; a < arr.length; a++) {
+                                                if(arr[a].type == "folder"){
+                                                    if(arr[a].files.legth > 0){
+                                                        sum += getFolderSize(arr[a].files)
+                                                    }
+                                                }else{
+                                                    sum += arr[a].size;
+                                                }          
+                                            }
+                                            return sum
+                                        }
+                                    
+                                    %>
                                     <% if(singleFile.type == "folder"){
                                         fileSize = getFolderSize(singleFile.files);
                                         fileSize = formatBytes(fileSize)    
