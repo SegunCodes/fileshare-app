@@ -16,7 +16,7 @@ const nodemailerObject = {
         pass : process.env.mailPassword
     }
 }
-const redirectUrl = "https://the-filesharer-app.herokuapp.com/";
+const redirectUrl = "https://the-filesharer-app.herokuapp.com";
 // const Recipe = require('../models/Recipe')
 
 
