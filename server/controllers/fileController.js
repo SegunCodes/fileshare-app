@@ -1256,7 +1256,7 @@ exports.shareViaLink = async(req, res) =>{
                     "createdAt" : new Date().getTime()
                 });
                 req.session.status = "success"
-                req.session.message = "share link " + link
+                req.session.message = "share link <a href ='"+link+"'>"+link+"</a>"
                 res.redirect("/MyUploads")
             })
             return false
